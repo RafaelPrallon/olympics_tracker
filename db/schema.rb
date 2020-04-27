@@ -10,16 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_214913) do
+ActiveRecord::Schema.define(version: 2020_04_27_010906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "competitions", force: :cascade do |t|
+    t.string "name"
+    t.bigint "sport_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sport_id"], name: "index_competitions_on_sport_id"
+  end
 
   create_table "sports", force: :cascade do |t|
     t.string "name"
     t.integer "victory_rule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "valid_attempts", default: 1
   end
 
 end

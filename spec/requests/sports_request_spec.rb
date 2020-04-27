@@ -63,7 +63,7 @@ RSpec.describe "Sports", type: :request do
 
     context 'when it has no valid parameters' do
       before(:each) do
-        post(sports_path, params: { sport: { name: '', victory_rule: '' } })
+        post(sports_path, params: { sport: { name: '', victory_rule: '', valid_attempts: 0 } })
       end
 
       it 'returns http unprocessable_entity' do
@@ -72,7 +72,7 @@ RSpec.describe "Sports", type: :request do
 
       it 'does not create sport' do
         expect {
-          post(sports_path, params: { sport: { name: '', victory_rule: '' } })
+          post(sports_path, params: { sport: { name: '', victory_rule: '', valid_attempts: 0 } })
         }.to_not change(Sport, :count)
       end
     end
